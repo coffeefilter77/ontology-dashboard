@@ -1,0 +1,38 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "backend",
+      "image": "",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": ,
+          "containerPort": 
+        }
+      ]
+    },
+    {
+      "name": "frontend",
+      "image": "",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": ,
+          "containerPort": 
+        }
+      ],
+      "links": [
+        "backend"
+      ],
+      "environment": [
+        {
+          "name": "API_URL",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+.welcome-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-message h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome-message p.example-text {
+    color: #666;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.ontology-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-card h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.info-card p, .info-card ul {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.info-card ul {
+    padding-left: 20px;
+}
+
+.chat-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+}
+
+#question-form {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+.response-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.response-text {
+    white-space: pre-wrap;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.logs-container {
+    margin-top: 30px;
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 4px;
+    color: #ffa500;
+}
+
+.logs-text {
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-x: auto;
+    margin: 0;
+    padding: 10px;
+}
+
+.logs-container h3 {
+    color: #fff;
+    margin-bottom: 10px;
+}

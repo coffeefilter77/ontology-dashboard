@@ -1,0 +1,12 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ejs": "^3.1.6",
+    "axios": "^0.21.1",
+    "express-session": "^1.17.2",
+    "@aws-sdk/client-secrets-manager": "^3.32.0"
+  }
+}

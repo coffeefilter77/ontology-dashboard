@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Ontology Viewer</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/viewer.css">
+</head>
+<body>
+    <%- include('nav') %>
+    
+    <div class="container">
+        <div class="welcome-message">
+            <h1>Ontology Viewer</h1>
+        </div>
+        
+        <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } else { %>
+            <div class="ontology-info viewer-layout">
+                <div class="left-column">
+                    <h2>Select Type:</h2>
+                    <form action="/viewer" method="GET">
+                        <select name="type" onchange="this.form.submit()">
+                            <option value="classes" <%= selectedType === 'classes' ? 'selected' : '' %>>Classes</option>
+                            <option value="object_properties" <%= selectedType === 'object_properties' ? 'selected' : '' %>>Object Properties</option>
+                            <option value="data_properties" <%= selectedType === 'data_properties' ? 'selected' : '' %>>Data Properties</option>
+                        </select>
+                    </form>
+
+                    <h2>Select Entity:</h2>
+                    <form action="/viewer" method="GET">
+                        <input type="hidden" name="type" value="<%= selectedType %>">
+                        <select name="table" onchange="this.form.submit()">
+                            <% ontologyStructure[selectedType].forEach(table => { %>
+                                <option value="<%= table %>" <%= selectedTable === table ? 'selected' : '' %>><%= table %></option>
+                            <% }); %>
+                        </select>
+                    </form>
+                </div>
+                <div class="right-column">
+                    <% if (selectedTable && entityMetadata) { %>
+                        <div class="card viewer-card">
+                            <h3><%= selectedTable %></h3>
+                            <p><strong>Is Defined By:</strong> <%= entityMetadata.is_defined_by || 'Unknown' %></p>
+                            <% if (selectedType === 'classes') { %>
+                                <p><strong>Description:</strong> <%= entityMetadata.description || 'Unknown' %></p>
+                                <p><strong>Has Parent Class:</strong> <%= entityMetadata.parent || 'None' %></p>
+                                <p><strong>Has Child Classes:</strong> <%= entityMetadata.children ? entityMetadata.children.join(', ') : 'None' %></p>
+                                <p><strong>Unique Key:</strong> <%= entityMetadata.primary_key || 'Unknown' %></p>
+                            <% } else if (selectedType === 'object_properties') { %>
+                                <p><strong>Description:</strong> <%= entityMetadata.description || 'Unknown' %></p>
+                                <p><strong>Related Classes:</strong> <%= entityMetadata.related_classes ? entityMetadata.related_classes.join(', ') : 'Unknown' %></p>
+                            <% } else if (selectedType === 'data_properties') { %>
+                                <p><strong>Description:</strong> <%= entityMetadata.description || 'Unknown' %></p>
+                                <p><strong>Describes:</strong> <%= entityMetadata.domain || 'Unknown' %></p>
+                                <p><strong>Type:</strong> <%= entityMetadata.range || 'Unknown' %></p>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+            
+            <% if (selectedTable) { %>
+                <div class="full-width-table">
+                    <div class="table-header">
+                        <h2>Data for <%= selectedTable %>:</h2>
+                        <div class="search-container">
+                            <input type="text" id="searchInput" placeholder="Search across all columns...">
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <% tableData.columns.forEach(column => { %>
+                                        <th><%= column %></th>
+                                    <% }); %>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% tableData.rows.forEach(row => { %>
+                                    <tr>
+                                        <% row.forEach(cell => { %>
+                                            <td><%- cell %></td>
+                                        <% }); %>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const table = document.querySelector('.full-width-table table');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = table?.querySelectorAll('tbody tr');
+
+            if (!rows) return;
+
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

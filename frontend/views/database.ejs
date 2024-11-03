@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title><%= title %> - Ontology Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/database.css">
+</head>
+<body>
+    <%- include('nav') %>
+    
+    <div class="container">
+        <div class="welcome-message">
+            <h1><%= title %></h1>
+            <p>This page provides direct access to database operations and testing.</p>
+        </div>
+
+        <div class="database-tools">
+            <div class="tool-section">
+                <h2>SQLite Query Tool</h2>
+                <p>Execute SQLite queries directly on the database. Make sure to use correct SQLite syntax.</p>
+                <p class="example-text">Example query: <code>select name, comment, is_retail_only from cto_isp;</code></p>
+                <div class="query-input">
+                    <textarea id="sql-query" placeholder="Enter your SQLite query here..."></textarea>
+                    <button id="execute-query" class="action-button">Execute Query</button>
+                </div>
+                <div id="query-output" class="output-area">
+                    <div id="query-table"></div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <div class="section-header">
+                    <h2>Test Database Integrity</h2>
+                    <span id="integrity-status"></span>
+                </div>
+                <p>This will recreate the database schema and reload data with foreign key constraints enabled. Use this to verify that all data relationships are valid and there are no orphaned records.</p>
+                <button id="test-integrity" class="action-button">Run Integrity Test</button>
+                <div id="integrity-output" class="output-area"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('test-integrity').addEventListener('click', async () => {
+            const outputArea = document.getElementById('integrity-output');
+            const statusIndicator = document.getElementById('integrity-status');
+            outputArea.innerHTML = 'Running integrity test...';
+            statusIndicator.innerHTML = ''; // Clear previous status
+            
+            try {
+                const response = await fetch('/test-integrity', { method: 'POST' });
+                const data = await response.json();
+                outputArea.innerHTML = `<pre>${data.output}</pre>`;
+                
+                // Check if there was an error in the output
+                if (data.output.includes('Error during integrity test')) {
+                    statusIndicator.innerHTML = '❌'; // Red cross
+                    statusIndicator.className = 'status-error';
+                } else {
+                    statusIndicator.innerHTML = '✓'; // Green tick
+                    statusIndicator.className = 'status-success';
+                }
+            } catch (error) {
+                outputArea.innerHTML = `Error: ${error.message}`;
+                statusIndicator.innerHTML = '❌'; // Red cross
+                statusIndicator.className = 'status-error';
+            }
+        });
+
+        document.getElementById('execute-query').addEventListener('click', async () => {
+            const query = document.getElementById('sql-query').value;
+            const outputArea = document.getElementById('query-table');
+            outputArea.innerHTML = 'Executing query...';
+            
+            try {
+                const response = await fetch('/execute-query', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ query })
+                });
+                const data = await response.json();
+                
+                if (data.error) {
+                    outputArea.innerHTML = `<div class="error">${data.error}</div>`;
+                    return;
+                }
+
+                let outputHtml = '';
+                if (data.output) {
+                    outputHtml += `<pre class="query-log">${data.output}</pre>`;
+                }
+
+                if (data.columns && data.rows) {
+                    // Create table
+                    let tableHtml = '<table><thead><tr>';
+                    data.columns.forEach(col => {
+                        tableHtml += `<th>${col}</th>`;
+                    });
+                    tableHtml += '</tr></thead><tbody>';
+                    
+                    data.rows.forEach(row => {
+                        tableHtml += '<tr>';
+                        row.forEach(cell => {
+                            tableHtml += `<td>${cell === null ? 'NULL' : cell}</td>`;
+                        });
+                        tableHtml += '</tr>';
+                    });
+                    
+                    tableHtml += '</tbody></table>';
+                    outputHtml += tableHtml;
+                } else {
+                    outputHtml += `<div class="message">${data.message || ''}</div>`;
+                }
+                
+                outputArea.innerHTML = outputHtml;
+            } catch (error) {
+                outputArea.innerHTML = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

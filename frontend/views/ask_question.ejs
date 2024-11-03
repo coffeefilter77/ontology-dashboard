@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title><%= title %> - Ontology Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/ask_question.css">
+</head>
+<body>
+    <%- include('nav') %>
+    
+    <div class="container">
+        <div class="welcome-message">
+            <h1><%= title %></h1>
+            <p class="example-text">If something isn't working, please contact Point Topic.</p>
+        </div>
+
+        <div class="chat-container">
+            <form id="question-form">
+                <div class="input-group">
+                    <textarea 
+                        id="user-question" 
+                        name="question" 
+                        placeholder="Ask a question about the ontology..."
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Ask Question</button>
+            </form>
+
+            <div class="response-container">
+                <h3>Response:</h3>
+                <div id="ai-response" class="response-text">
+                    <!-- AI response will be displayed here -->
+                </div>
+            </div>
+
+            <div class="logs-container">
+                <h3>Logs:</h3>
+                <pre id="ai-logs" class="logs-text">
+                    <!-- Logs will be displayed here -->
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('question-form');
+        const textarea = document.getElementById('user-question');
+        const responseDiv = document.getElementById('ai-response');
+        const logsDiv = document.getElementById('ai-logs');
+
+        // Handle form submission
+        async function handleSubmit(e) {
+            e.preventDefault();
+            
+            const question = textarea.value;
+            if (!question.trim()) return;  // Don't submit if empty
+            
+            responseDiv.textContent = 'Thinking...';
+            logsDiv.textContent = 'Starting query process...\n';
+            
+            try {
+                const response = await fetch('/api/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question })
+                });
+                
+                const data = await response.json();
+                responseDiv.textContent = data.response;
+                
+                // Add logs
+                logsDiv.textContent += `
+Time: ${new Date().toISOString()}
+Question: ${question}
+Model: ${data.model}
+First Stage Response: ${data.first_response}
+${data.sql_query ? `SQL Query: ${data.sql_query}` : 'No SQL Query needed'}
+${data.sql_query ? `Query Results: ${JSON.stringify(data.query_results, null, 2)}` : ''}
+Final Response Length: ${data.response.length} characters
+------------------------\n`;
+            } catch (error) {
+                responseDiv.textContent = 'Error getting response. Please try again.';
+                logsDiv.textContent += `Error: ${error.message}\n`;
+            }
+        }
+
+        // Handle form submit
+        form.addEventListener('submit', handleSubmit);
+
+        // Handle Enter key in textarea
+        textarea.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();  // Prevent the default Enter behavior
+                form.querySelector('.submit-btn').click();  // Trigger the submit button click
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+services:
+  backend:
+    image: 
+    ports:
+      - ""
+  frontend:
+    image: 
+    ports:
+      - ""
+    environment:
+      - API_URL=http://backend:8000

@@ -1,0 +1,371 @@
+.welcome-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-message h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: #34495e;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.welcome-message a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.welcome-message a:hover {
+    text-decoration: underline;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.visualise-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.visualise-btn:hover {
+    background-color: #2980b9;
+}
+
+#visualisation-container {
+    width: 100%;
+    height: 500px;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.ontology-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-card h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.info-card p, .info-card ul {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.info-card ul {
+    padding-left: 20px;
+}
+
+#graph-container {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#controls button, #controls input[type="text"] {
+    margin: 5px 0;
+}
+
+#node-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+#search-bar {
+    position: absolute;
+    left: 10px;
+    top: 220px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+#layout-select {
+    margin-top: 10px;
+}
+
+/* Button styles */
+#controls button,
+#search-button,
+#zoom-in,
+#zoom-out,
+#fit-view,
+#export,
+#toggle-dark-mode {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#controls button:hover,
+#search-button:hover,
+#zoom-in:hover,
+#zoom-out:hover,
+#fit-view:hover,
+#export:hover,
+#toggle-dark-mode:hover {
+    background-color: #2980b9;
+}
+
+/* Search input style */
+#search-input {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+/* Layout select style */
+#layout-select {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Spacing slider style */
+#spacing {
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Control group layout */
+.control-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Entity relationship graph container */
+#entity-relationship-container {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#entity-graph-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Entity controls */
+#entity-controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#entity-node-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+
+#entity-search-bar {
+    position: absolute;
+    left: 10px;
+    top: 220px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Button styles for entity controls */
+#entity-controls button,
+#entity-search-button,
+#entity-zoom-in,
+#entity-zoom-out,
+#entity-fit-view,
+#entity-export,
+#entity-toggle-dark-mode {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#entity-controls button:hover,
+#entity-search-button:hover,
+#entity-zoom-in:hover,
+#entity-zoom-out:hover,
+#entity-fit-view:hover,
+#entity-export:hover,
+#entity-toggle-dark-mode:hover {
+    background-color: #2980b9;
+}
+
+#entity-search-input {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+}
+
+#entity-layout-select {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background-color: white;
+}
+
+#entity-spacing {
+    width: 100%;
+    margin: 10px 0;
+}
+
+#entity-relationship-options {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+#entity-relationship-select {
+    font-family: 'Avenir', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    background-color: white;
+}
+
+/* Add these styles */
+.fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    background: white;
+    margin: 0 !important;
+}
+
+.fullscreen #controls,
+.fullscreen #entity-controls {
+    position: fixed;
+    z-index: 10000;
+}
+
+.fullscreen #search-bar,
+.fullscreen #entity-search-bar {
+    position: fixed;
+    z-index: 10000;
+}
+
+.fullscreen #node-info,
+.fullscreen #entity-node-info {
+    position: fixed;
+    z-index: 10000;
+}
+
+
+#entity-relationship-options {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+}
+
+
+.fullscreen #entity-relationship-options {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10001;
+    margin: 0;
+    border-radius: 0;
+}
+
+.fullscreen #entity-controls {
+    top: 80px; 
+}
+
+.fullscreen #entity-search-bar {
+    top: 290px; 
+}

@@ -1,0 +1,226 @@
+/* Styles used across multiple pages */
+body {
+    font-family: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-size: 14px;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 20px;
+    font-size: 13px;
+    font-family: 'Avenir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #34495e;
+    color: #ecf0f1;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #e8f4f8;
+}
+
+.hidden {
+    display: none;
+}
+
+.welcome-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-message h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: #34495e;
+    font-size: 1.2em;
+}
+
+.ontology-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.ontology-info h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.card {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.btn-cta, .btn-secondary {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-cta {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.btn-cta:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+}
+
+.btn-secondary:hover {
+    background-color: #bdc3c7;
+    transform: translateY(-2px);
+}
+
+.info-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-card h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.info-card p, .info-card ul {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.info-card ul {
+    padding-left: 20px;
+}
+
+/* Styles specific to the Viewer page */
+.viewer-layout {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.left-column {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.right-column {
+    width: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.full-width-table {
+    width: 100%;
+}
+
+.table-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.viewer-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.full-width-table {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Add some responsive design for smaller screens */
+@media screen and (max-width: 600px) {
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+    }
+}

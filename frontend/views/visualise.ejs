@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title><%= title %> - Ontology Management System</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/visualise.css">
+    <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.8.14/dist/g6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+</head>
+<body>
+    <%- include('nav') %>
+    
+    <div class="container">
+        <div class="welcome-message">
+            <h1><%= title %></h1>
+            <p>Visualisations built on <a href="https://github.com/antvis/G6" target="_blank">G6</a></p>
+            <p>For visualising the structure of the ontology, click the "Visualise Ontology Structure" button. For visualising data populating the ontology itself, click the "Visualise Entity or Relationship" button. If the data is not visible, click on 'Fit'.</p>
+            <p>More features coming soon!</p>
+        </div>
+
+        <div class="button-container">
+            <button id="visualise-ontology" class="visualise-btn">Visualise Ontology Structure</button>
+            <button id="visualise-entity" class="visualise-btn">Visualise Entity or Relationship</button>
+        </div>
+
+        <div id="visualisation-container">
+            <div id="graph-container" style="display: none;">
+                <div id="controls">
+                    <div class="control-group">
+                        <button id="zoom-in">+</button>
+                        <button id="zoom-out">-</button>
+                        <button id="fit-view">Fit</button>
+                        <button id="export">Export</button>
+                        <button id="fullscreen">⛶</button>
+                    </div>
+                    <div class="control-group">
+                        <label for="spacing">Spacing:</label>
+                        <input type="range" id="spacing" min="20" max="500" value="100">
+                    </div>
+                    <div class="control-group">
+                        <label for="layout-select">Layout:</label>
+                        <select id="layout-select">
+                            <option value="force">Force</option>
+                            <option value="circular">Circular</option>
+                            <option value="grid">Grid</option>
+                            <option value="concentric">Concentric</option>
+                            <option value="radial">Radial</option>
+                            <option value="dagre">Dagre</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="node-info"></div>
+                <div id="search-bar">
+                    <input type="text" id="search-input" placeholder="Search nodes...">
+                    <button id="search-button">Search</button>
+                </div>
+            </div>
+            <div id="entity-relationship-container" style="display: none;">
+                <div id="entity-relationship-options">
+                    <label for="entity-relationship-select">Choose relationship type:</label>
+                    <select id="entity-relationship-select">
+                        <option value="cto_uses_network">cto_uses_network (ISP to Network)</option>
+                        <option value="cto_owns_network">cto_owns_network (Network Operator to Network)</option>
+                    </select>
+                </div>
+                <div id="entity-graph-container">
+                    <!-- Controls for entity relationship graph -->
+                    <div id="entity-controls">
+                        <div class="control-group">
+                            <button id="entity-zoom-in">+</button>
+                            <button id="entity-zoom-out">-</button>
+                            <button id="entity-fit-view">Fit</button>
+                            <button id="entity-export">Export</button>
+                            <button id="entity-fullscreen">⛶</button>
+                        </div>
+                        <div class="control-group">
+                            <label for="entity-spacing">Spacing:</label>
+                            <input type="range" id="entity-spacing" min="20" max="500" value="100">
+                        </div>
+                        <div class="control-group">
+                            <label for="entity-layout-select">Layout:</label>
+                            <select id="entity-layout-select">
+                                <option value="force">Force</option>
+                                <option value="circular">Circular</option>
+                                <option value="grid">Grid</option>
+                                <option value="concentric">Concentric</option>
+                                <option value="radial">Radial</option>
+                                <option value="dagre">Dagre</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="entity-node-info"></div>
+                    <div id="entity-search-bar">
+                        <input type="text" id="entity-search-input" placeholder="Search nodes...">
+                        <button id="entity-search-button">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/visualizations/ontology-structure.js"></script>
+    <script src="/js/visualizations/entity-relationship.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const visualiseOntologyBtn = document.getElementById('visualise-ontology');
+            const visualiseEntityBtn = document.getElementById('visualise-entity');
+            const graphContainer = document.getElementById('graph-container');
+            const entityRelationshipContainer = document.getElementById('entity-relationship-container');
+            const entityRelationshipSelect = document.getElementById('entity-relationship-select');
+
+            visualiseOntologyBtn.addEventListener('click', () => {
+                graphContainer.style.display = 'block';
+                entityRelationshipContainer.style.display = 'none';
+                initOntologyGraph();
+            });
+
+            visualiseEntityBtn.addEventListener('click', () => {
+                graphContainer.style.display = 'none';
+                entityRelationshipContainer.style.display = 'block';
+                initEntityRelationshipGraph(entityRelationshipSelect.value);
+            });
+
+            entityRelationshipSelect.addEventListener('change', () => {
+                initEntityRelationshipGraph(entityRelationshipSelect.value);
+            });
+        });
+    </script>
+</body>
+</html>

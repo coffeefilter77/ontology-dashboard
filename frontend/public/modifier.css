@@ -1,0 +1,63 @@
+.modifier-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modifier-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.modifier-section h2 {
+    color: #2c3e50;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.modifier-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modifier-form label {
+    font-weight: bold;
+    color: #34495e;
+}
+
+.modifier-form input[type="text"],
+.modifier-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.modifier-form button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.modifier-form button:hover {
+    background-color: #2980b9;
+}
+
+.warning-message {
+    background-color: #fcf8e3;
+    border: 1px solid #faebcc;
+    color: #8a6d3b;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}

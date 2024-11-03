@@ -1,0 +1,17 @@
+[
+  {
+    "Namespace": "aws:autoscaling:launchconfiguration",
+    "OptionName": "IamInstanceProfile",
+    "Value": ""
+  },
+  {
+    "Namespace": "aws:elasticbeanstalk:application:environment",
+    "OptionName": "PORT",
+    "Value": ""
+  },
+  {
+    "Namespace": "aws:autoscaling:launchconfiguration",
+    "OptionName": "InstanceType",
+    "Value": ""
+  }
+]

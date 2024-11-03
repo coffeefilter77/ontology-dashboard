@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Ontology Modifier</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/modifier.css">
+</head>
+<body>
+    <%- include('nav') %>
+    
+    <div class="container">
+        <h1>Ontology Modifier</h1>
+        
+        <% if (error) { %>
+            <p style="color: red;"><%= error %></p>
+        <% } else { %>
+            <div class="modifier-layout">
+                <div class="modifier-section">
+                    <h2>Select Entity Type:</h2>
+                    <form action="/modifier" method="GET">
+                        <select name="type" onchange="this.form.submit()">
+                            <option value="classes" <%= selectedType === 'classes' ? 'selected' : '' %>>Classes</option>
+                            <option value="object_properties" <%= selectedType === 'object_properties' ? 'selected' : '' %>>Object Properties</option>
+                            <option value="data_properties" <%= selectedType === 'data_properties' ? 'selected' : '' %>>Data Properties</option>
+                        </select>
+                    </form>
+                </div>
+
+                <div class="modifier-section">
+                    <h2>Select Entity:</h2>
+                    <form action="/modifier" method="GET">
+                        <input type="hidden" name="type" value="<%= selectedType %>">
+                        <select name="entity" onchange="this.form.submit()">
+                            <% ontologyStructure[selectedType].forEach(entity => { %>
+                                <option value="<%= entity %>" <%= selectedEntity === entity ? 'selected' : '' %>><%= entity %></option>
+                            <% }); %>
+                        </select>
+                    </form>
+                </div>
+
+                <% if (selectedEntity && entityMetadata) { %>
+                    <div class="modifier-section">
+                        <h2>Add New Entry to <%= selectedEntity %></h2>
+                        <form action="/add-entry" method="POST" class="modifier-form">
+                            <input type="hidden" name="entity_type" value="<%= selectedType %>">
+                            <input type="hidden" name="entity_name" value="<%= selectedEntity %>">
+                            <% if (selectedType === 'classes') { %>
+                                <label for="description">Description:</label>
+                                <input type="text" id="description" name="description" required>
+                                <label for="parent">Parent Class:</label>
+                                <input type="text" id="parent" name="parent">
+                            <% } else if (selectedType === 'object_properties') { %>
+                                <label for="description">Description:</label>
+                                <input type="text" id="description" name="description" required>
+                                <label for="related_classes">Related Classes (comma-separated):</label>
+                                <input type="text" id="related_classes" name="related_classes" required>
+                            <% } else if (selectedType === 'data_properties') { %>
+                                <label for="description">Description:</label>
+                                <input type="text" id="description" name="description" required>
+                                <label for="domain">Describes:</label>
+                                <input type="text" id="domain" name="domain" required>
+                                <label for="range">Type:</label>
+                                <input type="text" id="range" name="range" required>
+                            <% } %>
+                            <button type="submit">Add Entry</button>
+                        </form>
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

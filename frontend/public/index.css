@@ -1,0 +1,123 @@
+.welcome-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-message h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: #34495e;
+    font-size: 1.2em;
+}
+
+.ontology-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.ontology-info h2 {
+    color: #2c3e50;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.info-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.index-card {
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    flex: 1;
+    max-width: calc(33.33% - 14px);
+}
+
+.index-card h3 {
+    color: #2980b9;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+}
+
+.index-card p {
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.ontology-example {
+    margin-top: 30px;
+    background-color: #e8f6f3;
+    border-left: 4px solid #1abc9c;
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+}
+
+.ontology-example h3 {
+    color: #16a085;
+    margin-bottom: 10px;
+}
+
+.ontology-example ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.ontology-example li {
+    margin-bottom: 5px;
+}
+
+.cta-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.cta-section h2 {
+    color: #2c3e50;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.additional-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.additional-info h2 {
+    color: #2c3e50;
+    font-size: 1.5em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.additional-info p, .additional-info ul {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.additional-info ul {
+    padding-left: 20px;
+}
+
+.additional-info a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.additional-info a:hover {
+    text-decoration: underline;
+}

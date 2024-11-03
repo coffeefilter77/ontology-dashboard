@@ -1,0 +1,183 @@
+.welcome-message {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.welcome-message h1 {
+    color: #2c3e50;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.ontology-info {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+.info-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.info-card h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.info-card p, .info-card ul {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+.info-card ul {
+    padding-left: 20px;
+}
+
+.database-tools {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tool-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tool-section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.tool-section p {
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.action-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background-color: #2980b9;
+}
+
+.output-area {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+    min-height: 100px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.output-area pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.query-input {
+    margin-bottom: 15px;
+}
+
+#sql-query {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: monospace;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+.error {
+    color: #dc3545;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+#query-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#query-table th, #query-table td {
+    border: 1px solid #dee2e6;
+    padding: 8px;
+    text-align: left;
+}
+
+#query-table th {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+#query-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+#query-table tr:hover {
+    background-color: #e9ecef;
+}
+
+.example-text {
+    color: #666;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.example-text code {
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    color: #e83e8c;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+#integrity-status {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.status-success {
+    color: #28a745;
+}
+
+.status-error {
+    color: #dc3545;
+}
+
