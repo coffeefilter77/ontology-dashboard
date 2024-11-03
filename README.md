@@ -47,23 +47,20 @@ Uses nested prompts logic with functionality for LLM to form and execute queries
 
 Script to retrieve AWS EB logs (`get_logs.sh`)
 
+## Screenshots
 
-## Log Retrieval
 
-The `get_logs.sh` script is used to retrieve logs from the Elastic Beanstalk environment. It performs the following actions:
+Nav bar:
+![nav](nav.png)
 
-1. **Log Request**: Requests the latest logs from the specified Elastic Beanstalk environment.
-2. **Log Retrieval**: Retrieves the log URLs and downloads the logs, appending them to `eb_logs.txt`.
-3. **Log Display**: Displays the last 100 lines of the combined log file for quick inspection.
 
-## Development Notes
+Table rendering:
+![data rendering](data_rendering.png)
 
-- **Data Refresh**: Regular queries to the Snowflake database ensure that the information is up-to-date.
-- **Security**: Ensure that sensitive information, such as API keys and passwords, are stored securely and not hardcoded in the source code.
-- **ontology_metadata.py**: This is a really important file that contains a JSON object used to populate tables on various pages.
 
-## Getting Started
+Query tool:
+![query tool](query_tool.png)
 
-To get started with development or deployment, ensure you have the necessary AWS credentials and Docker installed and running. Follow the deployment steps outlined above to set up the application in your AWS environment.
 
-For more detailed information on the ontology structure and its components, refer to the `ontology_structure/documentation.yml` file.
+Visualisations:
+![visualisation g6](visualisation_g6.png)
